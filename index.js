@@ -1,5 +1,5 @@
 const NodeCache = require("node-cache");
-const myCache = new NodeCache( { stdTTL: 600, checkperiod: 700 } );
+const myCache = new NodeCache( { stdTTL: 600, checkperiod: 60 } );
 const Discord = require("discord.js-light");
 const CHANNELS = ["index", "data", "files", "settings", "chat"];
 function atob(str) {
@@ -217,14 +217,9 @@ class Disdata {
         console.log("Key invalid");
         reject(false);
       }
-      myCache.get(key, async (err, value) => {
-        if (err) {
-          console.log(err);
-          reject(false);
-        } else (value) => {
-          resolve(value);
-        }
-      });
+      if (myCache.get(key) != undefined) {
+        resolve(myCache.get(key));
+      }
       // console.log(Disdata.channels["data"])
       Disdata.channels["index"].messages
         .fetch({ limit: 100 })
@@ -320,6 +315,16 @@ class Disdata {
         })
         .catch(reject);
     });
+  }
+  /**
+   * @summary Get cache stats
+   * @return {Promise<String>} - Cache stats
+   */
+  stats() {
+    return new Promise((resolve, reject) => {
+      resolve(JSON.stringify(myCache.getStats()));
+    });
+        
   }
 }
 module.exports = Disdata;

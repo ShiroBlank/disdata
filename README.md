@@ -38,6 +38,9 @@ Disdata
 *   `token`  
 *   `dbname`   (optional, default `null`)
 
+### Caching
+This is a modified version of Disdata that includes caching to reduce the reliance on the discord API.
+
 ### Examples
 
 ```javascript

@@ -1,5 +1,5 @@
 const NodeCache = require("node-cache");
-const myCache = new NodeCache();
+const myCache = new NodeCache( { stdTTL: 600, checkperiod: 700 } );
 const Discord = require("discord.js-light");
 const CHANNELS = ["index", "data", "files", "settings", "chat"];
 function atob(str) {

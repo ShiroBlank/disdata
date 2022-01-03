@@ -137,6 +137,7 @@ class Disdata {
       let exists = await this.has(key);
       if (exists) {
         if (editIfAlredyExist) {
+          myCache.del(key);
           return this.edit(key, data).then(resolve).catch(reject);
         }
 
@@ -185,7 +186,7 @@ class Disdata {
         reject(false);
       }
       // console.log(Disdata.channels["data"])
-
+      myCache.set(key, data);
       const content = atob(data) + ":" + Date.now().toString();
       Disdata.channels["index"].messages
         .fetch({ limit: 100 })

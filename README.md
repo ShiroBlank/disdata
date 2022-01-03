@@ -10,6 +10,7 @@
 
 *   [Disdata](#disdata)
     *   [Parameters](#parameters)
+    *   [Caching](#caching)
     *   [Examples](#examples)
     *   [login](#login)
         *   [Parameters](#parameters-1)
@@ -28,6 +29,7 @@
     *   [delete](#delete)
         *   [Parameters](#parameters-8)
     *   [inviteDB](#invitedb)
+    *   [stats](#stats)
 
 ## Disdata
 
@@ -126,3 +128,6 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 ### inviteDB
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** URL invitation Discord
+
+### Stats
+**[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** Current cached data statistics

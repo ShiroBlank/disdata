@@ -39,7 +39,7 @@ Disdata
 *   `dbname`   (optional, default `null`)
 
 ### Caching
-This is a modified version of Disdata that includes caching to reduce the reliance on the discord API.
+This is a modified version of Disdata that includes caching to reduce the load on the discord API.
 
 ### Examples
 

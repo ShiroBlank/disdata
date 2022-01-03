@@ -1,3 +1,5 @@
+const NodeCache = require("node-cache");
+const myCache = new NodeCache();
 const Discord = require("discord.js-light");
 const CHANNELS = ["index", "data", "files", "settings", "chat"];
 function atob(str) {
@@ -140,6 +142,7 @@ class Disdata {
 
         return reject("Use edit for alredy stored data, or delete it");
       }
+      myCache.set(key, data);
       // console.log(Disdata.channels["data"])
 
       const content = atob(data) + ":" + Date.now().toString();
@@ -214,6 +217,14 @@ class Disdata {
         console.log("Key invalid");
         reject(false);
       }
+      myCache.get(key, async (err, value) => {
+        if (err) {
+          console.log(err);
+          reject(false);
+        } else (value) => {
+          resolve(value);
+        }
+      });
       // console.log(Disdata.channels["data"])
       Disdata.channels["index"].messages
         .fetch({ limit: 100 })
@@ -241,6 +252,9 @@ class Disdata {
       if (typeof key != "string" || !key || !key.search(/[^a-zA-Z]+/g)) {
         console.log("Key invalid");
         reject(false);
+      }
+      if (myCache.has(key)) {
+        resolve(true);
       }
       // console.log(Disdata.channels["data"])
       Disdata.channels["index"].messages
@@ -271,6 +285,7 @@ class Disdata {
         console.log("Key invalid");
         reject();
       }
+      myCache.del(key);
       // console.log(Disdata.channels["data"])
       Disdata.channels["index"].messages
         .fetch({ limit: 100 })

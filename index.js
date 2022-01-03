@@ -231,6 +231,7 @@ class Disdata {
                 .fetch(message.content.split(":")[1])
                 .then((msg) => {
                   resolve(btoa(msg.content));
+                  myCache.set(key, btoa(msg.content));
                 });
             }
           });
